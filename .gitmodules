@@ -1,3 +1,6 @@
 [submodule "base"]
 	path = base
 	url = https://github.com.cnpmjs.org/songxuyao/QtCommonSDK.git
+[submodule "mybase"]
+	path = mybase
+	url = https://github.com/songxuyao/QtCommonSDK.git
