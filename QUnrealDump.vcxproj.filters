@@ -22,5 +22,86 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="mybase\utility\Elapsed.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mybase\utility\Random.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mybase\log\CustomLogMessageHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mybase\log\SLogAction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mybase\settings\GlobalSettings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cheat\memory\SMemoryAccessor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cheat\process\SProcess.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cheat\memory\SMemoryInternalAccessor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cheat\memory\SMemoryExternalAccessor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mybase\microsoft\SLastError.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="mybase\utility\assert.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mybase\utility\Elapsed.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mybase\utility\Random.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mybase\utility\utility.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mybase\version\version.auto.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mybase\global.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mybase\log\SLogAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mybase\log\CustomLogMessageHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mybase\settings\GlobalSettings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cheat\memory\SMemoryAccessor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cheat\process\SProcess.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cheat\memory\SMemoryExternalAccessor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cheat\memory\SMemoryInternalAccessor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mybase\microsoft\SLastError.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mybase\microsoft\ntdll\ntdll.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="mybase\microsoft\ntdll\ntdll_x64.lib" />
+    <Library Include="mybase\microsoft\ntdll\ntdll_x86.lib" />
   </ItemGroup>
 </Project>
