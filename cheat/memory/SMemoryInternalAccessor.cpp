@@ -9,22 +9,26 @@ SMemoryInternalAccessor::~SMemoryInternalAccessor()
 {
 }
 
-quint8 SMemoryInternalAccessor::ReadInt8(quint64 nAddress)
+bool SMemoryInternalAccessor::ReadInt8(quint64 nAddress, quint8& value)
 {
-	return *(quint8*)nAddress;
+	value = *(quint8*)nAddress;
+	return true;
 }
 
-quint16 SMemoryInternalAccessor::ReadInt16(quint64 nAddress)
+bool SMemoryInternalAccessor::ReadInt16(quint64 nAddress, quint16& value)
 {
-	return *(quint16*)nAddress;
+	value = *(quint16*)nAddress;
+	return true;
 }
 
-quint32 SMemoryInternalAccessor::ReadInt32(quint64 nAddress)
+bool SMemoryInternalAccessor::ReadInt32(quint64 nAddress, quint32& value)
 {
-	return *(quint32*)nAddress;
+	value = *(quint32*)nAddress;
+	return true;
 }
 
-quint64 SMemoryInternalAccessor::ReadInt64(quint64 nAddress)
+bool SMemoryInternalAccessor::ReadInt64(quint64 nAddress, quint64& value)
 {
-	return *(quint64*)nAddress;
+	value = *(quint64*)nAddress;
+	return true;
 }

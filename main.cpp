@@ -1,5 +1,5 @@
 #include <QtCore/QCoreApplication>
-#include "log\CustomLogMessageHandler.h"
+#include "log/CustomLogMessageHandler.h"
 
 
 int main(int argc, char *argv[])

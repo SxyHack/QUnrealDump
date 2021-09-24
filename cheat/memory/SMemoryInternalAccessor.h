@@ -8,8 +8,8 @@ public:
 	SMemoryInternalAccessor();
 	~SMemoryInternalAccessor();
 
-	quint8  ReadInt8(quint64 nAddress) override;
-	quint16 ReadInt16(quint64 nAddress) override;
-	quint32 ReadInt32(quint64 nAddress) override;
-	quint64 ReadInt64(quint64 nAddress) override;
+	bool ReadInt8(quint64 nAddress, quint8& value) override;
+	bool ReadInt16(quint64 nAddress, quint16& value) override;
+	bool ReadInt32(quint64 nAddress, quint32& value) override;
+	bool ReadInt64(quint64 nAddress, quint64& value) override;
 };

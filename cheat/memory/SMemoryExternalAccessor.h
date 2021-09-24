@@ -8,15 +8,31 @@ public:
 	SMemoryExternalAccessor();
 	~SMemoryExternalAccessor();
 
-	quint8  ReadInt8(quint64 nAddress) override;
-	quint16 ReadInt16(quint64 nAddress) override;
-	quint32 ReadInt32(quint64 nAddress) override;
-	quint64 ReadInt64(quint64 nAddress) override;
-
-private:
-	quint8* Read(quint64 nAddress, qint32 nSize);
+	bool ReadInt8(quint64 nAddress, quint8& value) override;
+	bool ReadInt16(quint64 nAddress, quint16& value) override;
+	bool ReadInt32(quint64 nAddress, quint32& value) override;
+	bool ReadInt64(quint64 nAddress, quint64& value) override;
 
 protected:
-	char*  _Buffer;
-	qint32 _BufferSize;
+	template<class T>
+	bool Read(quint64 nAddress, T& value)
+	{
+		SIZE_T nReadedSize = 0;
+		LPVOID pAddress = (LPVOID)nAddress;
+		HANDLE hProcess = GProcess.GetHandle();
+		if (hProcess == NULL)
+		{
+			qCritical("Read 0x%X:%d Failed, not open process", nAddress, nSize);
+			return false;
+		}
+
+		if (!::ReadProcessMemory(hProcess, pAddress, (LPVOID)&value, sizeof(T), &nReadedSize))
+		{
+			qCritical("Read 0x%X:%d Failed.", nAddress, nSize);
+			return false;
+		}
+
+		qDebug("Read 0x%X:%d Okay.", nAddress, nSize);
+		return true;
+	}
 };

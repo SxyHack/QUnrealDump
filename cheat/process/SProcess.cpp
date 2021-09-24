@@ -1,10 +1,10 @@
 #include "SProcess.h"
 #include "microsoft\SLastError.h"
-#include "microsoft\ntdll\ntdll.h"
 
-static HANDLE  gProcessHandle = NULL;
-static quint64 gBaseAddress = 0;
-static quint64 gProcessID = 0;
+static HANDLE  _ProcessHandle = NULL;
+static quint64 _BaseAddress = 0;
+static quint64 _BaseModuleSize = 0;
+static quint64 _ProcessID = 0;
 
 SProcess::SProcess()
 {
@@ -22,13 +22,14 @@ SProcess& SProcess::Get()
 
 BOOL SProcess::Open(quint64 nPID)
 {
-	if (gProcessHandle)
+	if (_ProcessHandle)
 	{
-		CloseHandle(gProcessHandle);
+		CloseHandle(_ProcessHandle);
+		Close();
 	}
 
-	gProcessHandle = ::OpenProcess(PROCESS_ALL_ACCESS, FALSE, nPID);
-	if (gProcessHandle == NULL)
+	_ProcessHandle = ::OpenProcess(PROCESS_ALL_ACCESS, FALSE, nPID);
+	if (_ProcessHandle == NULL)
 	{
 		SLastError lastError;
 		qCritical("OpenProcess[%d] failed, REASON:0x%x DETAIL:%s", 
@@ -38,16 +39,17 @@ BOOL SProcess::Open(quint64 nPID)
 		return FALSE;
 	}
 
-	gProcessID = nPID;
+	_ProcessID = nPID;
 
 	return TRUE;
 }
 
 BOOL SProcess::NtOpen(quint64 nPID)
 {
-	if (gProcessHandle)
+	if (_ProcessHandle)
 	{
-		CloseHandle(gProcessHandle);
+		CloseHandle(_ProcessHandle);
+		Close();
 	}
 
 	NTSTATUS status;
@@ -61,7 +63,7 @@ BOOL SProcess::NtOpen(quint64 nPID)
 	clientId.UniqueThread = NULL;
 	clientId.UniqueProcess = UlongToHandle(nPID);
 	InitializeObjectAttributes(&objectAttributes, NULL, 0, NULL, NULL);
-	status = NtOpenProcess(&gProcessHandle,
+	status = NtOpenProcess(&_ProcessHandle,
 		PROCESS_CREATE_THREAD | PROCESS_VM_OPERATION |
 		PROCESS_VM_WRITE | PROCESS_VM_READ |
 		PROCESS_SUSPEND_RESUME | PROCESS_QUERY_INFORMATION,
@@ -72,50 +74,64 @@ BOOL SProcess::NtOpen(quint64 nPID)
 	{
 		/* Fail */
 		SLastError lastError(status);
-		//NtErrToWinError(status);
-		qCritical("NtOpen(%d) Failed, REASON: %d, DETAIL:%s", nPID, lastError.ErrorCode, lastError.ToString());
+		qCritical("NtOpenProcess(%d) Failed, REASON: %d, DETAIL:%s", 
+			nPID, 
+			lastError, 
+			lastError.ToString());
 		return FALSE;
 	}
 
-	gProcessID = nPID;
+	_ProcessID = nPID;
 
 	/* Return the handle */
 	return TRUE;
 }
 
+BOOL SProcess::IsOpen()
+{
+	return _ProcessHandle != NULL;
+}
+
+void SProcess::Close()
+{
+	CloseHandle(_ProcessHandle);
+
+	_ProcessHandle = NULL;
+}
+
 HANDLE SProcess::GetHandle()
 {
-	return gProcessHandle;
+	return _ProcessHandle;
 }
 
-quint64 SProcess::GetBaseAddress()
-{
-	if (gBaseAddress > 0)
-	{
-		return gBaseAddress;
-	}
-
-	MODULEENTRY32 moduleEntry;
-
-	// 获取进程快照中包含在th32ProcessID中指定的进程的所有的模块。
-	HANDLE hSnapshot = ::CreateToolhelp32Snapshot(TH32CS_SNAPMODULE, gProcessID); 
-	if (hSnapshot == NULL) 
-	{
-		SLastError lastError;
-		qCritical("Call CreateToolhelp32Snapshot() Failed, REASON:%x, DETAIL:%s", lastError, lastError.ToString());
-		return NULL;
-	}
-
-	ZeroMemory(&moduleEntry, sizeof(MODULEENTRY32));
-	moduleEntry.dwSize = sizeof(MODULEENTRY32);
-	if (!Module32First(hSnapshot, &moduleEntry)) 
-	{
-		CloseHandle(hSnapshot);
-		return NULL;
-	}
-
-	CloseHandle(hSnapshot);
-	gBaseAddress = (quint64)moduleEntry.hModule;
-
-	return gBaseAddress;
-}
+//BOOL SProcess::GetBaseAddress(quint64& nAddress, DWORD& dwSize)
+//{
+//	MODULEENTRY32 moduleEntry;
+//	ZeroMemory(&moduleEntry, sizeof(MODULEENTRY32));
+//	moduleEntry.dwSize = sizeof(MODULEENTRY32);
+//
+//	// 获取进程快照中包含在th32ProcessID中指定的进程的所有的模块。
+//	HANDLE hSnapshot = ::CreateToolhelp32Snapshot(TH32CS_SNAPMODULE, _ProcessID); 
+//	if (hSnapshot == NULL) 
+//	{
+//		SLastError lastError;
+//		qCritical("Call CreateToolhelp32Snapshot(%d) Failed, REASON:%x, DETAIL:%s", 
+//			_ProcessID, 
+//			lastError, 
+//			lastError.ToString());
+//		return FALSE;
+//	}
+//
+//	if (!Module32First(hSnapshot, &moduleEntry)) 
+//	{
+//		CloseHandle(hSnapshot);
+//		return FALSE;
+//	}
+//
+//	CloseHandle(hSnapshot);
+//
+//	nAddress = (quint64)moduleEntry.modBaseAddr;
+//	dwSize = moduleEntry.modBaseSize;
+//
+//	return TRUE;
+//}

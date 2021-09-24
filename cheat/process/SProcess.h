@@ -4,10 +4,11 @@
 
 class SProcess
 {
-public:
+protected:
 	SProcess();
 	~SProcess();
 
+public:
 	static SProcess& Get();
 
 public:
@@ -16,16 +17,13 @@ public:
 	//
 	BOOL Open(quint64 nPID);
 	BOOL NtOpen(quint64 nPID);
+	BOOL IsOpen();
+	void Close();
 
 	//
 	// 返回进程句柄
 	//
 	HANDLE GetHandle();
-
-	// 
-	// 返回进程基地址，exe模块的基地址
-	//
-	quint64 GetBaseAddress();
 };
 
 

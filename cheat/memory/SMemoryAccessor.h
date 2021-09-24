@@ -14,11 +14,11 @@ public:
 	//
 	// 读取内存
 	// [IN] nAddress 传入地址
-	// [RETURN] quint8 返回地址的内存
+	// [OUT] value 返回地址的数值
+	// [RETURN] bool 是否读取成功
 	//
-	virtual quint8  ReadInt8(quint64 nAddress) = 0;
-	virtual quint16 ReadInt16(quint64 nAddress) = 0;
-	virtual quint32 ReadInt32(quint64 nAddress) = 0;
-	virtual quint64 ReadInt64(quint64 nAddress) = 0;
-
+	virtual bool ReadInt8(quint64 nAddress, quint8& value) = 0;
+	virtual bool ReadInt16(quint64 nAddress, quint16& value) = 0;
+	virtual bool ReadInt32(quint64 nAddress, quint32& value) = 0;
+	virtual bool ReadInt64(quint64 nAddress, quint64& value) = 0;
 };
