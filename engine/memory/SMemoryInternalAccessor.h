@@ -12,4 +12,5 @@ public:
 	bool ReadInt16(quint64 nAddress, quint16& value) override;
 	bool ReadInt32(quint64 nAddress, quint32& value) override;
 	bool ReadInt64(quint64 nAddress, quint64& value) override;
+	bool ReadBytes(quint64 nAddress, quint64 nSize, quint8** pBuffer) override;
 };

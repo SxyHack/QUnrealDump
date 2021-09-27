@@ -28,3 +28,24 @@ bool SMemoryExternalAccessor::ReadInt64(quint64 nAddress, quint64& value)
 {
 	return Read<quint64>(nAddress, value);
 }
+
+bool SMemoryExternalAccessor::ReadBytes(quint64 nAddress, quint64 nSize, quint8** pBuffer)
+{
+	SIZE_T nReadedSize = 0;
+	LPVOID pAddress = (LPVOID)nAddress;
+	HANDLE hProcess = GProcess.GetHandle();
+	if (hProcess == NULL)
+	{
+		qCritical("Read 0x%X:%d Failed, not open process", nAddress, nSize);
+		return false;
+	}
+
+	if (!::ReadProcessMemory(hProcess, pAddress, (LPVOID)*pBuffer, nSize, &nReadedSize))
+	{
+		qCritical("Read 0x%X:%d Failed.", nAddress, nSize);
+		return false;
+	}
+
+	//qDebug("Read 0x%X:%d Okay.", nAddress, nSize);
+	return true;
+}

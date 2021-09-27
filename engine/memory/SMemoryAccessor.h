@@ -21,4 +21,5 @@ public:
 	virtual bool ReadInt16(quint64 nAddress, quint16& value) = 0;
 	virtual bool ReadInt32(quint64 nAddress, quint32& value) = 0;
 	virtual bool ReadInt64(quint64 nAddress, quint64& value) = 0;
+	virtual bool ReadBytes(quint64 nAddress, quint64 nSize, quint8** pBuffer) = 0;
 };

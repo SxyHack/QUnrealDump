@@ -1,13 +1,34 @@
 #include "SProcess.h"
+#include "SMemoryInternalAccessor.h"
+#include "SMemoryExternalAccessor.h"
+
 #include "microsoft\SLastError.h"
+
+#define LOG_STR_MUST_INIT_ACCESSOR "必须先调用 SetupAccessor()"
+
 
 static HANDLE  _ProcessHandle = NULL;
 static quint64 _BaseAddress = 0;
 static quint64 _BaseModuleSize = 0;
 static quint64 _ProcessID = 0;
+static quint32 _NumberOfProcessors = 0;
+static quint64 _ProcessBegAddress = 0;
+static quint64 _ProcessEndAddress = 0;
+static quint64 _ProcessSize = 0;
+
+static SMemoryAccessor* _Accessor = nullptr;
 
 SProcess::SProcess()
 {
+	SYSTEM_INFO si;
+	ZeroMemory(&si, sizeof(si));
+	GetSystemInfo(&si);
+	_NumberOfProcessors = qMin(si.dwNumberOfProcessors, (DWORD)10);
+
+	_ProcessBegAddress = (quint64)si.lpMinimumApplicationAddress;
+	_ProcessEndAddress = (quint64)si.lpMaximumApplicationAddress;
+
+	_ProcessSize = _ProcessEndAddress - _ProcessBegAddress;
 }
 
 SProcess::~SProcess()
@@ -36,6 +57,7 @@ BOOL SProcess::Open(quint64 nPID)
 			nPID,
 			lastError, 
 			lastError.ToString());
+
 		return FALSE;
 	}
 
@@ -95,13 +117,96 @@ BOOL SProcess::IsOpen()
 void SProcess::Close()
 {
 	CloseHandle(_ProcessHandle);
-
 	_ProcessHandle = NULL;
+}
+
+void SProcess::SetupAccessor(bool bInternal /*= true*/)
+{
+	if (_Accessor) {
+		qWarning("内存访问器已经创建");
+		return;
+	}
+
+	if (bInternal)
+		_Accessor = new SMemoryInternalAccessor;
+	else
+		_Accessor = new SMemoryExternalAccessor;
+}
+
+bool SProcess::ReadInt8(quint64 nAddress, quint8& value)
+{
+	if (_Accessor == nullptr)
+	{
+		qCritical(LOG_STR_MUST_INIT_ACCESSOR);
+		return false;
+	}
+	return _Accessor->ReadInt8(nAddress, value);
+}
+
+bool SProcess::ReadInt16(quint64 nAddress, quint16& value)
+{
+	if (_Accessor == nullptr)
+	{
+		qCritical(LOG_STR_MUST_INIT_ACCESSOR);
+		return false;
+	}
+	return _Accessor->ReadInt16(nAddress, value);
+}
+
+bool SProcess::ReadInt32(quint64 nAddress, quint32& value)
+{
+	if (_Accessor == nullptr)
+	{
+		qCritical(LOG_STR_MUST_INIT_ACCESSOR);
+		return false;
+	}
+	return _Accessor->ReadInt32(nAddress, value);
+}
+
+bool SProcess::ReadInt64(quint64 nAddress, quint64& value)
+{
+	if (_Accessor == nullptr)
+	{
+		qCritical(LOG_STR_MUST_INIT_ACCESSOR);
+		return false;
+	}
+	return _Accessor->ReadInt64(nAddress, value);
+}
+
+bool SProcess::ReadBytes(quint64 nAddress, quint64 nSize, quint8** pBuffer)
+{
+	if (_Accessor == nullptr)
+	{
+		qCritical(LOG_STR_MUST_INIT_ACCESSOR);
+		return false;
+	}
+
+	return _Accessor->ReadBytes(nAddress, nSize, pBuffer);
 }
 
 HANDLE SProcess::GetHandle()
 {
 	return _ProcessHandle;
+}
+
+quint64 SProcess::GetNumberOfProcessor()
+{
+	return _NumberOfProcessors;
+}
+
+quint64 SProcess::GetBegAddress()
+{
+	return _ProcessBegAddress;
+}
+
+quint64 SProcess::GetEndAddress()
+{
+	return _ProcessEndAddress;
+}
+
+quint64 SProcess::GetSize()
+{
+	return _ProcessSize;
 }
 
 //BOOL SProcess::GetBaseAddress(quint64& nAddress, DWORD& dwSize)

@@ -32,3 +32,9 @@ bool SMemoryInternalAccessor::ReadInt64(quint64 nAddress, quint64& value)
 	value = *(quint64*)nAddress;
 	return true;
 }
+
+bool SMemoryInternalAccessor::ReadBytes(quint64 nAddress, quint64 nSize, quint8** pBuffer)
+{
+	*pBuffer = (quint8*)nAddress;
+	return true;
+}

@@ -1,107 +1,97 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>qrc;rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Translation Files">
-      <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
-      <Extensions>ts</Extensions>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="engine\find\how\SFindHow.cpp" />
+    <ClCompile Include="engine\find\how\SFindHowBetween.cpp" />
+    <ClCompile Include="engine\find\how\SFindHowEqual.cpp" />
+    <ClCompile Include="engine\find\method\fast\SFastWorker.cpp" />
+    <ClCompile Include="engine\find\method\SFindMethodFast.cpp" />
+    <ClCompile Include="engine\find\method\SFindMethod.cpp" />
+    <ClCompile Include="engine\find\what\SFindInteger.cpp" />
+    <ClCompile Include="engine\find\what\SFindDouble.cpp" />
+    <ClCompile Include="engine\find\what\SFindString.cpp" />
+    <ClCompile Include="engine\find\what\SFindWhat.cpp" />
+    <ClCompile Include="engine\memory\SMemoryAccessor.cpp" />
+    <ClCompile Include="engine\memory\SMemoryExternalAccessor.cpp" />
+    <ClCompile Include="engine\memory\SMemoryInternalAccessor.cpp" />
+    <ClCompile Include="engine\memory\SMemoryPtr.cpp" />
+    <ClCompile Include="engine\operation\SOperation.cpp" />
+    <ClCompile Include="engine\operation\SOptScanning.cpp" />
+    <ClCompile Include="engine\process\SProcess.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="mybase\log\CustomLogMessageHandler.cpp" />
+    <ClCompile Include="mybase\log\SLogAction.cpp" />
+    <ClCompile Include="mybase\microsoft\SWinFormat.cpp" />
+    <ClCompile Include="mybase\settings\GlobalSettings.cpp" />
+    <ClCompile Include="mybase\utility\Elapsed.cpp" />
+    <ClCompile Include="mybase\utility\Random.cpp" />
+    <ClCompile Include="mybase\microsoft\SLastError.cpp" />
+    <ClCompile Include="engine\find\method\SFindMethodParallel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="mybase\utility\Elapsed.cpp">
+    <ClCompile Include="engine\find\method\parallel\SParallelQueryRegion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="mybase\utility\Random.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="mybase\log\CustomLogMessageHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="mybase\log\SLogAction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="mybase\settings\GlobalSettings.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cheat\memory\SMemoryAccessor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cheat\process\SProcess.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cheat\memory\SMemoryInternalAccessor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cheat\memory\SMemoryExternalAccessor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="mybase\microsoft\SLastError.cpp">
+    <ClCompile Include="engine\find\method\fast\SFastDispatcher.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="mybase\utility\assert.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="mybase\utility\Elapsed.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="mybase\utility\Random.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="mybase\utility\utility.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="mybase\version\version.auto.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="mybase\global.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="mybase\log\SLogAction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="mybase\log\CustomLogMessageHandler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="mybase\settings\GlobalSettings.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cheat\memory\SMemoryAccessor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cheat\process\SProcess.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cheat\memory\SMemoryExternalAccessor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cheat\memory\SMemoryInternalAccessor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="mybase\microsoft\SLastError.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="mybase\microsoft\ntdll\ntdll.h">
+    <ClInclude Include="engine\find\method\fast\SFastWorker.h" />
+    <ClInclude Include="engine\memory\SMemoryAccessor.h" />
+    <ClInclude Include="engine\memory\SMemoryInternalAccessor.h" />
+    <ClInclude Include="engine\memory\SMemoryExternalAccessor.h" />
+    <ClInclude Include="engine\operation\SOptScanning.h" />
+    <ClInclude Include="engine\process\SProcess.h" />
+    <ClInclude Include="mybase\global.h" />
+    <ClInclude Include="mybase\log\CustomLogMessageHandler.h" />
+    <ClInclude Include="mybase\log\SLogAction.h" />
+    <ClInclude Include="mybase\microsoft\ntdll\ntdll.h" />
+    <ClInclude Include="mybase\microsoft\SWinFormat.h" />
+    <ClInclude Include="mybase\settings\GlobalSettings.h" />
+    <ClInclude Include="mybase\utility\assert.h" />
+    <ClInclude Include="mybase\utility\Elapsed.h" />
+    <ClInclude Include="mybase\utility\Random.h" />
+    <ClInclude Include="mybase\utility\utility.h" />
+    <ClInclude Include="mybase\version\version.auto.h" />
+    <ClInclude Include="mybase\microsoft\SLastError.h" />
+    <ClInclude Include="engine\find\method\parallel\SParallelQueryRegion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Library Include="mybase\microsoft\ntdll\ntdll_x64.lib" />
     <Library Include="mybase\microsoft\ntdll\ntdll_x86.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="engine\find\what\SFindWhat.h" />
+    <QtMoc Include="engine\find\what\SFindInteger.h" />
+    <QtMoc Include="engine\find\what\SFindDouble.h" />
+    <QtMoc Include="engine\find\how\SFindHow.h" />
+    <QtMoc Include="engine\find\what\SFindString.h" />
+    <QtMoc Include="engine\find\method\SFindMethod.h" />
+    <QtMoc Include="engine\find\how\SFindHowEqual.h" />
+    <QtMoc Include="engine\find\method\SFindMethodFast.h" />
+    <QtMoc Include="engine\find\how\SFindHowBetween.h" />
+    <QtMoc Include="engine\operation\SOperation.h" />
+    <QtMoc Include="engine\memory\SMemoryPtr.h" />
+    <QtMoc Include="engine\find\method\SFindMethodParallel.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="engine\find\method\fast\SFastDispatcher.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
   </ItemGroup>
 </Project>

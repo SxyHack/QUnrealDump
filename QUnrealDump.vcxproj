@@ -60,7 +60,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>mybase\;.\cheat\memory;.\cheat\process;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>mybase\;.\engine\memory;.\engine\process;.\engine\find;.\engine\operation;.\engine\find\what;.\engine\find\how;.\engine\find\method;.\engine\find\method\fast;.\engine\find\method\parallel;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(ProjectDir)mybase\microsoft\ntdll;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -69,7 +69,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>mybase\;.\cheat\memory;.\cheat\process;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>mybase\;.\engine\memory;.\engine\process;.\engine\find;.\engine\operation;.\engine\find\what;.\engine\find\how;.\engine\find\method;.\engine\find\method\fast;.\engine\find\method\parallel;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(ProjectDir)mybase\microsoft\ntdll;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -103,27 +103,61 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="cheat\memory\SMemoryAccessor.cpp" />
-    <ClCompile Include="cheat\memory\SMemoryExternalAccessor.cpp" />
-    <ClCompile Include="cheat\memory\SMemoryInternalAccessor.cpp" />
-    <ClCompile Include="cheat\process\SProcess.cpp" />
+    <ClCompile Include="engine\find\how\SFindHow.cpp" />
+    <ClCompile Include="engine\find\how\SFindHowBetween.cpp" />
+    <ClCompile Include="engine\find\how\SFindHowEqual.cpp" />
+    <ClCompile Include="engine\find\method\fast\SFastDispatcher.cpp" />
+    <ClCompile Include="engine\find\method\fast\SFastWorker.cpp" />
+    <ClCompile Include="engine\find\method\parallel\SParallelQueryRegion.cpp" />
+    <ClCompile Include="engine\find\method\SFindMethodFast.cpp" />
+    <ClCompile Include="engine\find\method\SFindMethod.cpp" />
+    <ClCompile Include="engine\find\method\SFindMethodParallel.cpp" />
+    <ClCompile Include="engine\find\what\SFindInteger.cpp" />
+    <ClCompile Include="engine\find\what\SFindDouble.cpp" />
+    <ClCompile Include="engine\find\what\SFindString.cpp" />
+    <ClCompile Include="engine\find\what\SFindWhat.cpp" />
+    <ClCompile Include="engine\memory\SMemoryAccessor.cpp" />
+    <ClCompile Include="engine\memory\SMemoryExternalAccessor.cpp" />
+    <ClCompile Include="engine\memory\SMemoryInternalAccessor.cpp" />
+    <ClCompile Include="engine\memory\SMemoryPtr.cpp" />
+    <ClCompile Include="engine\operation\SOperation.cpp" />
+    <ClCompile Include="engine\operation\SOptScanning.cpp" />
+    <ClCompile Include="engine\process\SProcess.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mybase\log\CustomLogMessageHandler.cpp" />
     <ClCompile Include="mybase\log\SLogAction.cpp" />
+    <ClCompile Include="mybase\microsoft\SWinFormat.cpp" />
     <ClCompile Include="mybase\settings\GlobalSettings.cpp" />
     <ClCompile Include="mybase\utility\Elapsed.cpp" />
     <ClCompile Include="mybase\utility\Random.cpp" />
     <ClCompile Include="mybase\microsoft\SLastError.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cheat\memory\SMemoryAccessor.h" />
-    <ClInclude Include="cheat\memory\SMemoryInternalAccessor.h" />
-    <ClInclude Include="cheat\memory\SMemoryExternalAccessor.h" />
-    <ClInclude Include="cheat\process\SProcess.h" />
+    <QtMoc Include="engine\find\what\SFindWhat.h" />
+    <QtMoc Include="engine\find\what\SFindInteger.h" />
+    <QtMoc Include="engine\find\what\SFindDouble.h" />
+    <QtMoc Include="engine\find\how\SFindHow.h" />
+    <QtMoc Include="engine\find\what\SFindString.h" />
+    <QtMoc Include="engine\find\method\SFindMethod.h" />
+    <QtMoc Include="engine\find\how\SFindHowEqual.h" />
+    <QtMoc Include="engine\find\method\SFindMethodFast.h" />
+    <QtMoc Include="engine\find\how\SFindHowBetween.h" />
+    <QtMoc Include="engine\find\method\fast\SFastDispatcher.h" />
+    <ClInclude Include="engine\find\method\fast\SFastWorker.h" />
+    <QtMoc Include="engine\find\method\SFindMethodParallel.h" />
+    <ClInclude Include="engine\find\method\parallel\SParallelQueryRegion.h" />
+    <ClInclude Include="engine\memory\SMemoryAccessor.h" />
+    <ClInclude Include="engine\memory\SMemoryInternalAccessor.h" />
+    <ClInclude Include="engine\memory\SMemoryExternalAccessor.h" />
+    <QtMoc Include="engine\operation\SOperation.h" />
+    <QtMoc Include="engine\memory\SMemoryPtr.h" />
+    <ClInclude Include="engine\operation\SOptScanning.h" />
+    <ClInclude Include="engine\process\SProcess.h" />
     <ClInclude Include="mybase\global.h" />
     <ClInclude Include="mybase\log\CustomLogMessageHandler.h" />
     <ClInclude Include="mybase\log\SLogAction.h" />
     <ClInclude Include="mybase\microsoft\ntdll\ntdll.h" />
+    <ClInclude Include="mybase\microsoft\SWinFormat.h" />
     <ClInclude Include="mybase\settings\GlobalSettings.h" />
     <ClInclude Include="mybase\utility\assert.h" />
     <ClInclude Include="mybase\utility\Elapsed.h" />
