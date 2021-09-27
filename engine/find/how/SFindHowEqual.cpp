@@ -46,7 +46,19 @@ bool SFindHowEqual::Judge(const QString& value)
 
 bool SFindHowEqual::Judge(quint8* pBuffer, quint8* pBufferEnd)
 {
-	
+	QByteArray signature = _Target.toByteArray();
+	quint8* pCursor = pBuffer;
 
-	return false;
+	for (int i = 0; i < signature.count(); i++) {
+		auto s = signature.at(i);
+		if (s == '?' || s == *pCursor) {
+			if (++pCursor > pBufferEnd) {
+				return false;
+			}
+			continue;
+		}
+		return false;
+	}
+
+	return true;
 }

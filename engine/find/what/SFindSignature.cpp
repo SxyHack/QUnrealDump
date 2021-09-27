@@ -16,7 +16,7 @@ bool SFindSignature::Lookup(quint8* pBuffer, quint64 nBufferSize, SFindHow* pHow
 	SFindHowEqual* pEqual = dynamic_cast<SFindHowEqual*>(pHow);
 	//if (typeid(pHow) != typeid(SFindHowEqual)) {
 	if (pEqual == nullptr) {
-		qWarning("特征码扫描只支持'精确查找(SFindHowEqual)', Type:%s", typeid(pHow).name());
+		qWarning("特征码扫描只支持'精确查找(SFindHowEqual)', Type:%s", typeid(*pHow).name());
 		return false;
 	}
 
