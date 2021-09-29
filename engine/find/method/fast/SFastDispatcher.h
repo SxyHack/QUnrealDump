@@ -29,7 +29,7 @@ public:
 
 protected:
 	SFindMethodFast* _Method;
-	SFastWorkerQueue _Queue;
+	SFastWorkerList _Queue;
 	QMutex           _MutexOfQueue;
 	QSemaphore       _IdleSPH;
 };

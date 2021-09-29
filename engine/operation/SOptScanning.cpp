@@ -3,7 +3,7 @@
 #include "SFindHow.h"
 #include "SFindMethodFast.h"
 
-SOptScanning::SOptScanning(SFindWhat* pWhat, SFindHow* pHow, SFindMethod* pMethod)
+SOptScanning::SOptScanning(SFindMethod* pMethod, SFindWhat* pWhat, SFindHow* pHow)
 	: SOperation(NULL)
 	, _How(pHow)
 	, _Method(pMethod)
@@ -15,7 +15,7 @@ SOptScanning::SOptScanning(SFindWhat* pWhat, SFindHow* pHow, SFindMethod* pMetho
 	_WhatList.append(pWhat);
 }
 
-SOptScanning::SOptScanning(SWhatList whats, SFindHow* pHow, SFindMethod* pMethod)
+SOptScanning::SOptScanning(SFindMethod* pMethod, SWhatList whats, SFindHow* pHow)
 	: SOperation(NULL)
 	, _WhatList(whats)
 	, _How(pHow)

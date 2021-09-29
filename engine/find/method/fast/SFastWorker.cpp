@@ -3,12 +3,13 @@
 #include "SOptScanning.h"
 #include "SProcess.h"
 #include "SFindHow.h"
+#include "utility/Elapsed.h"
 
-SFastWorker::SFastWorker(quint64 nBegAddr, quint64 nEndAddr, SFindMethodFast* pMethod, SFindWhat* pWhat)
+SFastWorker::SFastWorker(quint64 nBegAddr, quint64 nEndAddr, SFindMethodFast* pMethod, SWhatList& whats)
 	: QRunnable()
 	, _Method(pMethod)
 	, _Operation(pMethod->GetOptScanning())
-	, _What(pWhat)
+	, _Whats(whats)
 	, _BegAddr(nBegAddr)
 	, _EndAddr(nEndAddr)
 {
@@ -20,28 +21,30 @@ SFastWorker::~SFastWorker()
 
 void SFastWorker::run()
 {
-	if (_Method->isInterruptionRequested()) {
-		return;
-	}
+	SElapsed elapse("FastWorker");
+	//qDebug("Region:%p - %p", _BegAddr, _EndAddr);
 
-	if (_Operation->IsStopped()) {
-		return;
-	}
-
-	quint64 nRegionSize = _EndAddr - _BegAddr;
-	quint8* pBuffer = new quint8[nRegionSize];
-	ZeroMemory(pBuffer, nRegionSize);
-
-	if (!GProcess.ReadBytes(_BegAddr, nRegionSize, &pBuffer))
+	for (auto pWhat : _Whats) 
 	{
-		goto WORKER_END;
-	}
+		if (_Method->isInterruptionRequested()) {
+			return;
+		}
 
-	if (!_What->Lookup(pBuffer, nRegionSize, _Operation->GetHow()))
-	{
-		goto WORKER_END;
-	}
+		quint64 nRegionSize = _EndAddr - _BegAddr;
+		quint8* pBuffer = new quint8[nRegionSize];
+		ZeroMemory(pBuffer, nRegionSize);
 
-WORKER_END:
-	delete[] pBuffer;
+		if (!GProcess.ReadBytes(_BegAddr, nRegionSize, &pBuffer))
+		{
+			goto WORKER_END;
+		}
+
+		if (!pWhat->Lookup(pBuffer, nRegionSize, _Operation->GetHow()))
+		{
+			goto WORKER_END;
+		}
+
+	WORKER_END:
+		delete[] pBuffer;
+	}
 }

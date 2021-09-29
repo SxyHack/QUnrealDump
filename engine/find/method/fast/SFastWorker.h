@@ -1,18 +1,20 @@
 #pragma once
 
 #include <QRunnable>
-#include <QQueue>
+#include <QList>
+
+#include "SFindWhat.h"
 
 class SFindMethodFast;
 class SOptScanning;
-class SFindWhat;
+
 //
 // 
 //
 class SFastWorker : public QRunnable
 {
 public:
-	SFastWorker(quint64 nBegAddr, quint64 nEndAddr, SFindMethodFast* pMethod, SFindWhat* pWhat);
+	SFastWorker(quint64 nBegAddr, quint64 nEndAddr, SFindMethodFast* pMethod, SWhatList& whats);
 	~SFastWorker();
 
 	void run() override;
@@ -20,9 +22,9 @@ public:
 protected:
 	SFindMethodFast* _Method;
 	SOptScanning*    _Operation;
-	SFindWhat*       _What;
+	SWhatList        _Whats;
 	quint64          _BegAddr;
 	quint64          _EndAddr;
 };
 
-typedef QQueue<SFastWorker*> SFastWorkerQueue;
+typedef QList<SFastWorker*> SFastWorkerList;

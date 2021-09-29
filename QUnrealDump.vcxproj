@@ -21,6 +21,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -106,6 +107,7 @@
     <ClCompile Include="engine\find\how\SFindHow.cpp" />
     <ClCompile Include="engine\find\how\SFindHowBetween.cpp" />
     <ClCompile Include="engine\find\how\SFindHowEqual.cpp" />
+    <ClCompile Include="engine\find\how\SFindHowSunday.cpp" />
     <ClCompile Include="engine\find\method\fast\SFastDispatcher.cpp" />
     <ClCompile Include="engine\find\method\fast\SFastWorker.cpp" />
     <ClCompile Include="engine\find\method\parallel\SParallelQueryRegion.cpp" />
@@ -114,6 +116,7 @@
     <ClCompile Include="engine\find\method\SFindMethodParallel.cpp" />
     <ClCompile Include="engine\find\what\SFindInteger.cpp" />
     <ClCompile Include="engine\find\what\SFindDouble.cpp" />
+    <ClCompile Include="engine\find\what\SFindSignature.cpp" />
     <ClCompile Include="engine\find\what\SFindString.cpp" />
     <ClCompile Include="engine\find\what\SFindWhat.cpp" />
     <ClCompile Include="engine\memory\SMemoryAccessor.cpp" />
@@ -143,9 +146,11 @@
     <QtMoc Include="engine\find\method\SFindMethodFast.h" />
     <QtMoc Include="engine\find\how\SFindHowBetween.h" />
     <QtMoc Include="engine\find\method\fast\SFastDispatcher.h" />
+    <QtMoc Include="engine\find\how\SFindHowSunday.h" />
     <ClInclude Include="engine\find\method\fast\SFastWorker.h" />
     <QtMoc Include="engine\find\method\SFindMethodParallel.h" />
     <ClInclude Include="engine\find\method\parallel\SParallelQueryRegion.h" />
+    <QtMoc Include="engine\find\what\SFindSignature.h" />
     <ClInclude Include="engine\memory\SMemoryAccessor.h" />
     <ClInclude Include="engine\memory\SMemoryInternalAccessor.h" />
     <ClInclude Include="engine\memory\SMemoryExternalAccessor.h" />

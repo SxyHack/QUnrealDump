@@ -7,9 +7,6 @@
 #include <QList>
 #include <QSemaphore>
 
-//class SFindMethod;
-//class SFindHow;
-
 
 //
 // 扫描操作, 可以指定多个类型，比如一次扫描包括整数，字符串和浮点。
@@ -17,8 +14,8 @@
 class SOptScanning : public SOperation
 {
 public:
-	SOptScanning(SFindWhat* pWhat, SFindHow* pHow, SFindMethod* pMethod);
-	SOptScanning(SWhatList whats, SFindHow* pHow, SFindMethod* pMethod);
+	SOptScanning(SFindMethod* pMethod, SFindWhat* pWhat, SFindHow* pHow);
+	SOptScanning(SFindMethod* pMethod, SWhatList whats, SFindHow* pHow);
 	~SOptScanning();
 
 	void Start() override;
@@ -31,8 +28,11 @@ public:
 
 public:
 	// 开关
-	bool EnableRegionCode = false;    // 是否扫描代码页
+	bool EnableRegionCode = true;    // 是否扫描代码页
+
 	bool EnableRegionMapped = false;  // 是否扫描MEM_MAPPED
+	bool EnableRegionPrivate = true;
+	bool EnableRegionImage = true;
 
 protected:
 	SWhatList    _WhatList;

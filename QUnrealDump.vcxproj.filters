@@ -35,6 +35,12 @@
     <ClCompile Include="engine\find\method\fast\SFastDispatcher.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="engine\find\what\SFindSignature.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\find\how\SFindHowSunday.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine\find\method\fast\SFastWorker.h" />
@@ -79,6 +85,12 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="engine\find\method\fast\SFastDispatcher.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="engine\find\what\SFindSignature.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="engine\find\how\SFindHowSunday.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

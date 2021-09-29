@@ -24,5 +24,4 @@ public:
 	bool Judge(double value) override;
 
 	bool Judge(const QString& value) override;
-	bool Judge(quint8* pBuffer, quint8* pBufferEnd) override;
 };

@@ -2,7 +2,10 @@
 #include "log/CustomLogMessageHandler.h"
 #include "SOptScanning.h"
 #include "SFindInteger.h"
+#include "SFindSignature.h"
+
 #include "SFindHowEqual.h"
+#include "SFindHowSunday.h"
 #include "SFindMethodFast.h"
 #include "SFindMethodParallel.h"
 #include "SProcess.h"
@@ -29,16 +32,18 @@ int main(int argc, char *argv[])
 	QVariant D("\x11\x22\x34");
 	qDebug("Check QVariant Bytes: %s", (C == D) ? "true" : "false");
 
-    if (!GProcess.NtOpen(21896)) 
+    if (!GProcess.NtOpen(24888)) 
     {
         return -1;
     }
 
     GProcess.SetupAccessor(false);
 
-    SOptScanning opt(new SFindInteger(4), 
-        new SFindHowEqual(0xFF), 
-        new SFindMethodFast);
+    SOptScanning opt(new SFindMethodFast,
+        new SFindSignature,
+        new SFindHowSunday("4E 6F 6E 65 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 42 79 74 65 50 72 6F 70 65 72 74 79")
+		//new SFindHowEqual("\x4E\x6F\x6E\x65????????????????????\x42\x79\x74\x65\x50\x72\x6F\x70\x65\x72\x74\x79"));
+    );
     opt.Start();
 
     a.exec();

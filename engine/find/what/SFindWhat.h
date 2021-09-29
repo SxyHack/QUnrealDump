@@ -8,7 +8,8 @@ class SOptScanning;
 
 
 //
-// 找什么, 基类
+// 找什么类型的数据, 基类
+// 负责搜索逻辑。
 //
 class SFindWhat : public QObject
 {
@@ -27,8 +28,8 @@ public:
 
 protected:
 	SOptScanning* _Operation;
-	qint32 _Size;
-	bool   _FindFirst;   // true 表示只找一个, 否则找到全部匹配数值.
+	qint32        _Size;
+	bool          _FindFirst;   // true 表示只找一个, 否则找到全部匹配数值.
 };
 
 typedef QList<SFindWhat*> SWhatList;

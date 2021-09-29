@@ -21,7 +21,42 @@ QVariant& SFindHow::GetTarget()
 	return _Target;
 }
 
-bool SFindHow::Judge(quint8* pBuffer, quint8* pBufferEnd)
+bool SFindHow::Judge(quint8* pBuffer, qint32 nSize, quint64& nOutAddr)
+{
+	return false;
+}
+
+bool SFindHow::Judge(quint8 value)
+{
+	return false;
+}
+
+bool SFindHow::Judge(quint16 value)
+{
+	return false;
+}
+
+bool SFindHow::Judge(quint32 value)
+{
+	return false;
+}
+
+bool SFindHow::Judge(quint64 value)
+{
+	return false;
+}
+
+bool SFindHow::Judge(float value)
+{
+	return false;
+}
+
+bool SFindHow::Judge(double value)
+{
+	return false;
+}
+
+bool SFindHow::Judge(const QString& value)
 {
 	return false;
 }

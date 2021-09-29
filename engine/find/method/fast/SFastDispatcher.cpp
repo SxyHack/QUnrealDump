@@ -18,26 +18,24 @@ void SFastDispatcher::run()
 		if (_Queue.isEmpty())
 		{
 			//qDebug("Fast Dispatch Queue Is Empty");
-			_IdleSPH.acquire();
+			//_IdleSPH.acquire();
+			QThread::msleep(10);
 			continue;
 		}
 
 		SFastWorker* pWorker = _Queue.first();
 		_Method->StartWorker(pWorker);
 
-		_MutexOfQueue.lock();
+		//_MutexOfQueue.lock();
 		_Queue.removeFirst();
-		_MutexOfQueue.unlock();
+		//_MutexOfQueue.unlock();
 	}
 }
 
 void SFastDispatcher::PushQueue(SFastWorker* pWorker)
 {
-	_MutexOfQueue.lock();
 	_Queue.push_back(pWorker);
-	_MutexOfQueue.unlock();
-
-	_IdleSPH.release();
+	//_IdleSPH.release();
 }
 
 void SFastDispatcher::Stop()

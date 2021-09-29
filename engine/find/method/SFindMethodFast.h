@@ -2,9 +2,9 @@
 
 #include "SFindMethod.h"
 #include "SFastDispatcher.h"
+#include "SFastWorker.h"
 #include <QThreadPool>
 
-class SFastWorker;
 
 //
 //
@@ -26,4 +26,5 @@ protected:
 private:
 	QThreadPool     _ThreadPool;
 	SFastDispatcher _Dispatcher;
+	SFastWorkerList _Workers;
 };
