@@ -4,8 +4,12 @@
 
 #include "microsoft\SLastError.h"
 
-#define LOG_STR_MUST_INIT_ACCESSOR "必须先调用 SetupAccessor()"
+#include "SOptScanning.h"
+#include "SFindSignature.h"
+#include "SFindHowPattern.h"
+#include "SFindMethodFast.h"
 
+#define STRING_MUST_INIT_ACCESSOR "必须先调用 SetupAccessor()"
 
 static HANDLE  _ProcessHandle = NULL;
 static quint64 _BaseAddress = 0;
@@ -137,7 +141,7 @@ bool SProcess::ReadInt8(quint64 nAddress, quint8& value)
 {
 	if (_Accessor == nullptr)
 	{
-		qCritical(LOG_STR_MUST_INIT_ACCESSOR);
+		qCritical(STRING_MUST_INIT_ACCESSOR);
 		return false;
 	}
 	return _Accessor->ReadInt8(nAddress, value);
@@ -147,7 +151,7 @@ bool SProcess::ReadInt16(quint64 nAddress, quint16& value)
 {
 	if (_Accessor == nullptr)
 	{
-		qCritical(LOG_STR_MUST_INIT_ACCESSOR);
+		qCritical(STRING_MUST_INIT_ACCESSOR);
 		return false;
 	}
 	return _Accessor->ReadInt16(nAddress, value);
@@ -157,7 +161,7 @@ bool SProcess::ReadInt32(quint64 nAddress, quint32& value)
 {
 	if (_Accessor == nullptr)
 	{
-		qCritical(LOG_STR_MUST_INIT_ACCESSOR);
+		qCritical(STRING_MUST_INIT_ACCESSOR);
 		return false;
 	}
 	return _Accessor->ReadInt32(nAddress, value);
@@ -167,7 +171,7 @@ bool SProcess::ReadInt64(quint64 nAddress, quint64& value)
 {
 	if (_Accessor == nullptr)
 	{
-		qCritical(LOG_STR_MUST_INIT_ACCESSOR);
+		qCritical(STRING_MUST_INIT_ACCESSOR);
 		return false;
 	}
 	return _Accessor->ReadInt64(nAddress, value);
@@ -177,11 +181,23 @@ bool SProcess::ReadBytes(quint64 nAddress, quint64 nSize, quint8** pBuffer)
 {
 	if (_Accessor == nullptr)
 	{
-		qCritical(LOG_STR_MUST_INIT_ACCESSOR);
+		qCritical(STRING_MUST_INIT_ACCESSOR);
 		return false;
 	}
 
 	return _Accessor->ReadBytes(nAddress, nSize, pBuffer);
+}
+
+quint64 SProcess::FindPattern(const QVariant& pattern)
+{
+	SOptScanning operation(
+		new SFindMethodFast, 
+		new SFindSignature,
+		new SFindHowPattern(pattern)
+	);
+	operation.Start();
+	operation.WaitForDone();
+	return operation.AddressOfSignature;
 }
 
 HANDLE SProcess::GetHandle()

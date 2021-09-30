@@ -1,6 +1,7 @@
 #pragma once
 
 #include "global.h"
+#include <QVariant>
 
 class SProcess
 {
@@ -31,6 +32,9 @@ public:
 	bool ReadInt32(quint64 nAddress, quint32& value);
 	bool ReadInt64(quint64 nAddress, quint64& value);
 	bool ReadBytes(quint64 nAddress, quint64 nSize, quint8** pBuffer);
+
+	// 找特征码，很常用
+	quint64 FindPattern(const QVariant& pattern);
 
 	//
 	// 返回进程句柄
