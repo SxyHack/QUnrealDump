@@ -5,6 +5,7 @@
 #include "SFindHow.h"
 
 class SOptScanning;
+
 typedef QList<quint64> Offsets;
 
 //

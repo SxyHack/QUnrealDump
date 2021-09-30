@@ -22,12 +22,15 @@ public:
 	void Start() override;
 	void Stop() override;
 	bool IsStopped() override;
-
+	bool WaitForDone() override;
 
 	SFindHow* GetHow();
 	SWhatList& GetWhatList();
 
 	void OutputDebugElapse();
+
+signals:
+	void sFound(quint64 nAddress);
 
 public:
 	// 开关
@@ -37,10 +40,13 @@ public:
 	bool EnableRegionPrivate = true;
 	bool EnableRegionImage = true;
 
+	quint64 AddressOfSignature; // 扫描特征码使用
+
 protected:
 	SWhatList     _WhatList;
 	SFindHow*     _How;
 	SFindMethod*  _Method;
 	QSemaphore    _Interrupt;
 	QElapsedTimer _Time;
+	quint64       _Address;
 };

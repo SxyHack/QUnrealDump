@@ -13,5 +13,5 @@ public:
 	virtual void Start() = 0;
 	virtual void Stop() = 0;
 	virtual bool IsStopped() = 0;
-
+	virtual bool WaitForDone() = 0;
 };

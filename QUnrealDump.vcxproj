@@ -61,7 +61,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>mybase\;.\engine\memory;.\engine\process;.\engine\find;.\engine\operation;.\engine\find\what;.\engine\find\how;.\engine\find\method;.\engine\find\method\fast;.\engine\find\method\parallel;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>mybase\;.\engine\memory;.\engine\process;.\engine\find;.\engine\operation;.\engine\find\what;.\engine\find\how;.\engine\find\method;.\engine\find\method\fast;.\engine\find\method\parallel;.\dump;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(ProjectDir)mybase\microsoft\ntdll;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -70,7 +70,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>mybase\;.\engine\memory;.\engine\process;.\engine\find;.\engine\operation;.\engine\find\what;.\engine\find\how;.\engine\find\method;.\engine\find\method\fast;.\engine\find\method\parallel;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>mybase\;.\engine\memory;.\engine\process;.\engine\find;.\engine\operation;.\engine\find\what;.\engine\find\how;.\engine\find\method;.\engine\find\method\fast;.\engine\find\method\parallel;.\dump;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(ProjectDir)mybase\microsoft\ntdll;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -104,6 +104,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="dump\SDumpNames.cpp" />
     <ClCompile Include="engine\find\how\SFindHow.cpp" />
     <ClCompile Include="engine\find\how\SFindHowBetween.cpp" />
     <ClCompile Include="engine\find\how\SFindHowEqual.cpp" />
@@ -150,6 +151,7 @@
     <QtMoc Include="engine\find\method\fast\SFastDispatcher.h" />
     <QtMoc Include="engine\find\how\SFindHowSunday.h" />
     <QtMoc Include="engine\find\how\SFindHowPattern.h" />
+    <QtMoc Include="dump\SDumpNames.h" />
     <ClInclude Include="engine\find\method\fast\SFastWorker.h" />
     <QtMoc Include="engine\find\method\SFindMethodParallel.h" />
     <ClInclude Include="engine\find\method\parallel\SParallelQueryRegion.h" />

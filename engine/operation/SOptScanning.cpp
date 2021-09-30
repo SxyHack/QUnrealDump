@@ -7,10 +7,12 @@ SOptScanning::SOptScanning(SFindMethod* pMethod, SFindWhat* pWhat, SFindHow* pHo
 	: SOperation(NULL)
 	, _How(pHow)
 	, _Method(pMethod)
+	, Address(0)
 {
 	pWhat->SetRoot(this);
-	_How->SetOptScanning(this);
+
 	_Method->SetOptScanning(this);
+	_How->SetOptScanning(this);
 
 	_WhatList.append(pWhat);
 }
@@ -20,14 +22,15 @@ SOptScanning::SOptScanning(SFindMethod* pMethod, SWhatList whats, SFindHow* pHow
 	, _WhatList(whats)
 	, _How(pHow)
 	, _Method(pMethod)
+	, Address(0)
 {
 	for (auto pWhat : _WhatList)
 	{
 		pWhat->SetRoot(this);
 	}
 
-	_How->SetOptScanning(this);
 	_Method->SetOptScanning(this);
+	_How->SetOptScanning(this);
 }
 
 SOptScanning::~SOptScanning()
@@ -36,8 +39,8 @@ SOptScanning::~SOptScanning()
 
 void SOptScanning::Start()
 {
-	_Method->start(QThread::HighestPriority);
 	_Time.start();
+	_Method->start(QThread::HighestPriority);
 }
 
 void SOptScanning::Stop()
@@ -51,6 +54,11 @@ bool SOptScanning::IsStopped()
 	return _Interrupt.tryAcquire();
 }
 
+bool SOptScanning::WaitForDone()
+{
+	_Method->wait();
+}
+
 SFindHow* SOptScanning::GetHow()
 {
 	return _How;
@@ -59,6 +67,16 @@ SFindHow* SOptScanning::GetHow()
 SWhatList& SOptScanning::GetWhatList()
 {
 	return _WhatList;
+}
+
+quint64 SOptScanning::GetFoundAddress()
+{
+	return _Address;
+}
+
+void SOptScanning::SetFoundAddress(quint64 nAddr)
+{
+	_Address = nAddr;
 }
 
 void SOptScanning::OutputDebugElapse()

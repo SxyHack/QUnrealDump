@@ -47,6 +47,9 @@
     <ClCompile Include="engine\find\how\SFindHowPattern.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="dump\SDumpNames.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine\find\method\fast\SFastWorker.h" />
@@ -103,6 +106,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="engine\find\how\SFindHowPattern.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="dump\SDumpNames.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

@@ -23,7 +23,7 @@ SProcess::SProcess()
 	SYSTEM_INFO si;
 	ZeroMemory(&si, sizeof(si));
 	GetSystemInfo(&si);
-	_NumberOfProcessors = qMin(si.dwNumberOfProcessors, (DWORD)10);
+	_NumberOfProcessors = si.dwNumberOfProcessors;
 
 	_ProcessBegAddress = (quint64)si.lpMinimumApplicationAddress;
 	_ProcessEndAddress = (quint64)si.lpMaximumApplicationAddress;
