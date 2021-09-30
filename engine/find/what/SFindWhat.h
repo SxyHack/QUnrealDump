@@ -24,7 +24,7 @@ public:
 
 	void SetRoot(SOptScanning* pOperation);
 
-	virtual bool Lookup(quint8* pBuffer, quint64 nBufferSize, SFindHow* pHow) = 0;
+	virtual bool Lookup(quint64 nAddress, quint8* pBuffer, quint64 nBufferSize, SFindHow* pHow) = 0;
 
 	Offsets& GetOffsets();
 

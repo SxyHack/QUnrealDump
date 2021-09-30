@@ -9,7 +9,7 @@ SFindString::~SFindString()
 {
 }
 
-bool SFindString::Lookup(quint8* pBuffer, quint64 nBufferSize, SFindHow* pHow)
+bool SFindString::Lookup(quint64 nAddress, quint8* pBuffer, quint64 nBufferSize, SFindHow* pHow)
 {
 	return false;
 }

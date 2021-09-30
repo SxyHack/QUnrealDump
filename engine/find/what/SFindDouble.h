@@ -10,7 +10,7 @@ public:
 	SFindDouble();
 	~SFindDouble();
 
-	bool Lookup(quint8* pBuffer, quint64 nBufferSize, SFindHow* pHow) override;
+	bool Lookup(quint64 nAddress, quint8* pBuffer, quint64 nBufferSize, SFindHow* pHow) override;
 
 protected:
 	double _Target;

@@ -24,9 +24,8 @@ public:
 	virtual void Stop();
 
 	virtual bool IsValidRegion(const MEMORY_BASIC_INFORMATION& mbi);
-	//
-	// 判断内存页是否是代码
-	//
+
+	// 判断是否是代码页(.text)
 	virtual bool IsCodeRegion(const MEMORY_BASIC_INFORMATION& mbi);
 
 protected:

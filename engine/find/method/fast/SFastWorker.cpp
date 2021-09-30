@@ -21,7 +21,11 @@ SFastWorker::~SFastWorker()
 
 void SFastWorker::run()
 {
-	//SElapsed elapse("FastWorker");
+	if (_Method->isInterruptionRequested()) {
+		return;
+	}
+	quint64 nRegionSize = _EndAddr - _BegAddr;
+	SElapsed elapse(QString("FastWorker:%1").arg(nRegionSize));
 	//qDebug("Region:%p - %p", _BegAddr, _EndAddr);
 
 	auto pHow = _Operation->GetHow();
@@ -32,7 +36,6 @@ void SFastWorker::run()
 			return;
 		}
 
-		quint64 nRegionSize = _EndAddr - _BegAddr;
 		quint8* pBuffer = new quint8[nRegionSize];
 		ZeroMemory(pBuffer, nRegionSize);
 
@@ -41,19 +44,11 @@ void SFastWorker::run()
 			goto WORKER_END;
 		}
 
-		//if (_BegAddr == 0x28B853E0000)
-		//{
-		//	qDebug("Bp");
-		//}
-
-		if (!pWhat->Lookup(pBuffer, nRegionSize, pHow))
+		if (!pWhat->Lookup(_BegAddr, pBuffer, nRegionSize, pHow))
 		{
 			goto WORKER_END;
 		}
 
-		auto& offsets = pWhat->GetOffsets();
-		qDebug("Found At:%p", _BegAddr + offsets.first());
-		_Operation->OutputDebugElapse();
 
 	WORKER_END:
 		delete[] pBuffer;

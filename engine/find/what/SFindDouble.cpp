@@ -9,7 +9,7 @@ SFindDouble::~SFindDouble()
 {
 }
 
-bool SFindDouble::Lookup(quint8* pBuffer, quint64 nBufferSize, SFindHow* pHow)
+bool SFindDouble::Lookup(quint64 nAddress, quint8* pBuffer, quint64 nBufferSize, SFindHow* pHow)
 {
 	return false;
 }

@@ -13,5 +13,5 @@ public:
 	//
 	// 在传入的内存区域查找数值
 	//
-	bool Lookup(quint8* pBuffer, quint64 nBufferSize, SFindHow* pHow) override;
+	bool Lookup(quint64 nAddress, quint8* pBuffer, quint64 nBufferSize, SFindHow* pHow) override;
 };

@@ -102,21 +102,6 @@ bool SFindMethod::IsValidRegion(const MEMORY_BASIC_INFORMATION& mbi)
 	}
 
 	return true;
-	//// 如果是写时拷贝，跳过
-	//if ((mbi.Protect & PAGE_WRITECOPY) ||
-	//	(mbi.Protect & PAGE_NOCACHE) ||
-	//	(mbi.Protect & PAGE_NOACCESS) ||
-	//	(mbi.Protect & PAGE_GUARD) ||
-	//	(mbi.Protect & PAGE_WRITECOMBINE) ||
-	//	(mbi.Protect & PAGE_TARGETS_INVALID) ||
-	//	(mbi.Protect == 0))
-	//	return false;
-
-	//// 如果是MEM_MAPPED，则根据配置是否跳过
-	//if (mbi.Type == MEM_MAPPED)
-	//	return _Operation->EnableRegionMapped;
-
-	//return true;
 }
 
 bool SFindMethod::IsCodeRegion(const MEMORY_BASIC_INFORMATION& mbi)

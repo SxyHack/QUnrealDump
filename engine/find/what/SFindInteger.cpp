@@ -10,7 +10,7 @@ SFindInteger::~SFindInteger()
 {
 }
 
-bool SFindInteger::Lookup(quint8* pBuffer, quint64 nBufferSize, SFindHow* pHow)
+bool SFindInteger::Lookup(quint64 nAddress, quint8* pBuffer, quint64 nBufferSize, SFindHow* pHow)
 {
 	bool bFound = false;
 

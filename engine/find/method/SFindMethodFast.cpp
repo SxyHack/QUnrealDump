@@ -67,8 +67,6 @@ void SFindMethodFast::run()
 		}
 
 		quint64 nRegionEndAddr = nRegionBegAddr + MBI.RegionSize;
-
-
 		//QString qMemProtect = WinApi::FormatMemProtect(MBI.Protect);
 		//QString qMemState = WinApi::FormatMemState(MBI.State);
 		//QString qMemType = WinApi::FormatMemType(MBI.Type);
@@ -96,12 +94,10 @@ void SFindMethodFast::run()
 	qDebug("有效内存页数量：%d", _Workers.count());
 	//_Dispatcher.start(QThread::HighestPriority);
 
-	for (auto pWorker : _Workers)
-	{
+	for (auto pWorker : _Workers) {
 		_ThreadPool.start(pWorker);
 	}
 
 	_ThreadPool.waitForDone();
 	qInfo("扫描完成");
-
 }
