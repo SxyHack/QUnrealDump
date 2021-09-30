@@ -69,15 +69,6 @@ SWhatList& SOptScanning::GetWhatList()
 	return _WhatList;
 }
 
-quint64 SOptScanning::GetFoundAddress()
-{
-	return _Address;
-}
-
-void SOptScanning::SetFoundAddress(quint64 nAddr)
-{
-	_Address = nAddr;
-}
 
 void SOptScanning::OutputDebugElapse()
 {
