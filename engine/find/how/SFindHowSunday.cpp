@@ -15,47 +15,32 @@ SFindHowSunday::SFindHowSunday(const QVariant& vTarget, bool bIsHex)
 		CharToBytes();
 	}
 
-	InitTableNext();
+	InitNextTable();
 }
 
 SFindHowSunday::~SFindHowSunday()
 {
 }
 
-bool SFindHowSunday::Judge(quint8* pBuffer, qint32 nSize, quint64& nOutAddr)
+bool SFindHowSunday::Judge(quint8* pBuffer, qint32 nSize, qint64& nOffset)
 {
-	//if (nSize % 2 > 0)
-	//	return false;
+	qint32 nDLen = nSize; // n
+	qint32 nPLen = _PatternArray.length(); // m
 
-	//DWORD nHalfSize = nSize / 2;
-	//char* pHexBuffer = new char[nHalfSize + 1];
-	//DWORD tableP[0x100];
-	//qint32 i = -1;
-	qint32 nTargetLength = _TargetHexArray.length();
+	int i = nPLen - 1;
+	while (i < nDLen) {
+		int k = 0;
+		while (k < nPLen && _PatternArray[nPLen - k - 1] == pBuffer[i - k]) {
+			k++;
+		}
 
-	for (int i = 0, j, k; i < nSize;)
-	{
-		j = i;
-		k = 0;
-		for (; k < nTargetLength &&
-			j < nSize &&
-			_TargetHexArray[k] == pBuffer[j] ||
-			_TargetHexArray[k] == CONST_QUOTE; k++, j++);
-
-		if (k == nTargetLength)
-		{
-			nOutAddr = (quint64)pBuffer + i;
+		if (k == nPLen) {
+			nOffset = i - nPLen + 1;
+			qDebug("Sunday: 0x%p", nOffset);
 			return true;
 		}
 
-		if ((i + nTargetLength) >= nSize)
-			return false;
-
-		int num = _TableNext[pBuffer[i + nTargetLength]];
-		if (num == -1)
-			i += nTargetLength - _TableNext[CONST_QUOTE];
-		else
-			i += nTargetLength - num;
+		i += _Shift.contains(pBuffer[i]) ? _Shift.value(pBuffer[i]) : nPLen;
 	}
 
 	return false;
@@ -73,19 +58,19 @@ bool SFindHowSunday::HexStringToBytes()
 	if (qTarget.length() % 2 > 0)
 		return false;
 
-	_TargetHexArray.clear();
+	_PatternArray.clear();
 
 	for (int i = 0; i < qTarget.length(); i += 2)
 	{
 		auto ch = qTarget.mid(i, 2);
 		if (ch == "??")
 		{
-			_TargetHexArray.append(CONST_QUOTE);
+			_PatternArray.append(CONST_QUOTE);
 		}
 		else
 		{
 			auto nValue = ch.toShort(nullptr, 16);
-			_TargetHexArray.append(nValue);
+			_PatternArray.append(nValue);
 		}
 	}
 
@@ -101,27 +86,26 @@ bool SFindHowSunday::CharToBytes()
 		auto ch = qBytes.at(i);
 		if (ch == '?')
 		{
-			_TargetHexArray.append(CONST_QUOTE);
+			_PatternArray.append(CONST_QUOTE);
 		}
 		else
 		{
-			_TargetHexArray.append(ch);
+			_PatternArray.append(ch);
 		}
 	}
 
 	return true;
 }
 
-void SFindHowSunday::InitTableNext()
+void SFindHowSunday::InitNextTable()
 {
-	for (int i = 0; i < TABLE_NEXT_SIZE; i++)
-	{
-		_TableNext[i] = -1;
-	}
+	qint32 nPatternLength = _PatternArray.length();
 
-	for (int i = 0; i < TABLE_NEXT_SIZE; i++)
+	for (int i = 0; i < nPatternLength; i++)
 	{
-		auto p = _TargetHexArray.at(i);
-		_TableNext[p] = i;
+		_Shift.insert(_PatternArray[i], nPatternLength - i - 1);
 	}
 }
+
+
+// ²Î¿¼ https://blog.csdn.net/Simon798/article/details/109580472

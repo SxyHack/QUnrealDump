@@ -37,6 +37,7 @@ SOptScanning::~SOptScanning()
 void SOptScanning::Start()
 {
 	_Method->start(QThread::HighestPriority);
+	_Time.start();
 }
 
 void SOptScanning::Stop()
@@ -58,4 +59,9 @@ SFindHow* SOptScanning::GetHow()
 SWhatList& SOptScanning::GetWhatList()
 {
 	return _WhatList;
+}
+
+void SOptScanning::OutputDebugElapse()
+{
+	qDebug("%s execute %d ms", typeid(*this).name(), _Time.elapsed());
 }

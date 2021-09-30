@@ -107,6 +107,7 @@
     <ClCompile Include="engine\find\how\SFindHow.cpp" />
     <ClCompile Include="engine\find\how\SFindHowBetween.cpp" />
     <ClCompile Include="engine\find\how\SFindHowEqual.cpp" />
+    <ClCompile Include="engine\find\how\SFindHowPattern.cpp" />
     <ClCompile Include="engine\find\how\SFindHowSunday.cpp" />
     <ClCompile Include="engine\find\method\fast\SFastDispatcher.cpp" />
     <ClCompile Include="engine\find\method\fast\SFastWorker.cpp" />
@@ -122,6 +123,7 @@
     <ClCompile Include="engine\memory\SMemoryAccessor.cpp" />
     <ClCompile Include="engine\memory\SMemoryExternalAccessor.cpp" />
     <ClCompile Include="engine\memory\SMemoryInternalAccessor.cpp" />
+    <ClCompile Include="engine\memory\SMemoryPattern.cpp" />
     <ClCompile Include="engine\memory\SMemoryPtr.cpp" />
     <ClCompile Include="engine\operation\SOperation.cpp" />
     <ClCompile Include="engine\operation\SOptScanning.cpp" />
@@ -147,6 +149,7 @@
     <QtMoc Include="engine\find\how\SFindHowBetween.h" />
     <QtMoc Include="engine\find\method\fast\SFastDispatcher.h" />
     <QtMoc Include="engine\find\how\SFindHowSunday.h" />
+    <QtMoc Include="engine\find\how\SFindHowPattern.h" />
     <ClInclude Include="engine\find\method\fast\SFastWorker.h" />
     <QtMoc Include="engine\find\method\SFindMethodParallel.h" />
     <ClInclude Include="engine\find\method\parallel\SParallelQueryRegion.h" />
@@ -156,6 +159,7 @@
     <ClInclude Include="engine\memory\SMemoryExternalAccessor.h" />
     <QtMoc Include="engine\operation\SOperation.h" />
     <QtMoc Include="engine\memory\SMemoryPtr.h" />
+    <ClInclude Include="engine\memory\SMemoryPattern.h" />
     <ClInclude Include="engine\operation\SOptScanning.h" />
     <ClInclude Include="engine\process\SProcess.h" />
     <ClInclude Include="mybase\global.h" />

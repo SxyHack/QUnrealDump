@@ -6,6 +6,7 @@
 #include "SFindMethod.h"
 #include <QList>
 #include <QSemaphore>
+#include <QTime>
 
 
 //
@@ -26,6 +27,8 @@ public:
 	SFindHow* GetHow();
 	SWhatList& GetWhatList();
 
+	void OutputDebugElapse();
+
 public:
 	// 开关
 	bool EnableRegionCode = true;    // 是否扫描代码页
@@ -35,8 +38,9 @@ public:
 	bool EnableRegionImage = true;
 
 protected:
-	SWhatList    _WhatList;
-	SFindHow*    _How;
-	SFindMethod* _Method;
-	QSemaphore   _Interrupt;
+	SWhatList     _WhatList;
+	SFindHow*     _How;
+	SFindMethod*  _Method;
+	QSemaphore    _Interrupt;
+	QElapsedTimer _Time;
 };

@@ -13,7 +13,10 @@ SFindMethodFast::SFindMethodFast()
 	: SFindMethod()
 	, _Dispatcher(this)
 {
-	_ThreadPool.setMaxThreadCount(GProcess.GetNumberOfProcessor());
+	auto nCPU = GProcess.GetNumberOfProcessor();
+	qDebug("使用CPU数量:%d", nCPU);
+	//_ThreadPool.setMaxThreadCount(nCPU - 1);
+	_ThreadPool.setMaxThreadCount(1);
 }
 
 SFindMethodFast::~SFindMethodFast()
@@ -100,4 +103,5 @@ void SFindMethodFast::run()
 
 	_ThreadPool.waitForDone();
 	qInfo("扫描完成");
+
 }

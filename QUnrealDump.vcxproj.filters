@@ -41,6 +41,12 @@
     <ClCompile Include="engine\find\how\SFindHowSunday.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="engine\memory\SMemoryPattern.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\find\how\SFindHowPattern.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine\find\method\fast\SFastWorker.h" />
@@ -62,6 +68,9 @@
     <ClInclude Include="mybase\version\version.auto.h" />
     <ClInclude Include="mybase\microsoft\SLastError.h" />
     <ClInclude Include="engine\find\method\parallel\SParallelQueryRegion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\memory\SMemoryPattern.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -91,6 +100,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="engine\find\how\SFindHowSunday.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="engine\find\how\SFindHowPattern.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

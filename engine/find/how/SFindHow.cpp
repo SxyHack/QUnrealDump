@@ -21,7 +21,7 @@ QVariant& SFindHow::GetTarget()
 	return _Target;
 }
 
-bool SFindHow::Judge(quint8* pBuffer, qint32 nSize, quint64& nOutAddr)
+bool SFindHow::Judge(quint8* pBuffer, qint32 nSize, qint64& nOffset)
 {
 	return false;
 }

@@ -29,7 +29,7 @@ public:
 
 	virtual bool Judge(const QString& value);
 
-	virtual bool Judge(quint8* pBuffer, qint32 nSize, quint64& nOutAddr);
+	virtual bool Judge(quint8* pBuffer, qint32 nSize, qint64& nOffset);
 
 protected:
 	SOptScanning* _Operation;
