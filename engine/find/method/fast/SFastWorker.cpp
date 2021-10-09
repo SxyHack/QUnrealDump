@@ -30,7 +30,7 @@ void SFastWorker::run()
 
 	auto pHow = _Operation->GetHow();
 
-	for (auto pWhat : _Whats) 
+	for (auto pWhat : _Operation->GetWhatList()) 
 	{
 		if (_Method->isInterruptionRequested()) {
 			return;

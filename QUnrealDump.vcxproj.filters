@@ -76,6 +76,9 @@
     <ClInclude Include="engine\memory\SMemoryPattern.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Library Include="mybase\microsoft\ntdll\ntdll_x64.lib" />
@@ -123,5 +126,10 @@
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
       <ParseFiles>true</ParseFiles>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="test.asm">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

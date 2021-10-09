@@ -9,7 +9,7 @@
 #include "SFindHowPattern.h"
 #include "SFindMethodFast.h"
 
-#define STRING_MUST_INIT_ACCESSOR "±ØĞëÏÈµ÷ÓÃ SetupAccessor()"
+#define STRING_MUST_INIT_ACCESSOR "å¿…é¡»å…ˆè°ƒç”¨ SetupAccessor()"
 
 static HANDLE  _ProcessHandle = NULL;
 static quint64 _BaseAddress = 0;
@@ -33,6 +33,8 @@ SProcess::SProcess()
 	_ProcessEndAddress = (quint64)si.lpMaximumApplicationAddress;
 
 	_ProcessSize = _ProcessEndAddress - _ProcessBegAddress;
+
+	qDebug("CPUæ ¸æ•°: %d", _NumberOfProcessors);
 }
 
 SProcess::~SProcess()
@@ -127,7 +129,7 @@ void SProcess::Close()
 void SProcess::SetupAccessor(bool bInternal /*= true*/)
 {
 	if (_Accessor) {
-		qWarning("ÄÚ´æ·ÃÎÊÆ÷ÒÑ¾­´´½¨");
+		//qWarning("å†…å­˜è®¿é—®å™¨å·²ç»åˆ›å»º");
 		return;
 	}
 
@@ -197,7 +199,7 @@ quint64 SProcess::FindPattern(const QVariant& pattern)
 	);
 	operation.Start();
 	operation.WaitForDone();
-	return operation.AddressOfSignature;
+	return operation.GetFirstAddress();
 }
 
 HANDLE SProcess::GetHandle()
@@ -231,7 +233,7 @@ quint64 SProcess::GetSize()
 //	ZeroMemory(&moduleEntry, sizeof(MODULEENTRY32));
 //	moduleEntry.dwSize = sizeof(MODULEENTRY32);
 //
-//	// »ñÈ¡½ø³Ì¿ìÕÕÖĞ°üº¬ÔÚth32ProcessIDÖĞÖ¸¶¨µÄ½ø³ÌµÄËùÓĞµÄÄ£¿é¡£
+//	// è·å–è¿›ç¨‹å¿«ç…§ä¸­åŒ…å«åœ¨th32ProcessIDä¸­æŒ‡å®šçš„è¿›ç¨‹çš„æ‰€æœ‰çš„æ¨¡å—ã€‚
 //	HANDLE hSnapshot = ::CreateToolhelp32Snapshot(TH32CS_SNAPMODULE, _ProcessID); 
 //	if (hSnapshot == NULL) 
 //	{

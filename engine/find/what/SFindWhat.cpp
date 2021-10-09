@@ -18,9 +18,9 @@ void SFindWhat::SetRoot(SOptScanning* pOperation)
 	_Operation = pOperation;
 }
 
-Offsets& SFindWhat::GetOffsets()
+SListAddress& SFindWhat::GetAddresses()
 {
-	return _Offsets;
+	return _Addresses;
 }
 
 qint32 SFindWhat::GetSize()

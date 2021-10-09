@@ -24,7 +24,7 @@ bool SFindSignature::Lookup(quint64 nBaseAddr, quint8* pBuffer, quint64 nBufferS
 	{
 		quint64 nAddress = nBaseAddr + nOffset;
 		qDebug("Found Signature At: [%p]", nAddress);
-		_Offsets.append(nOffset);
+		_Addresses.append(nAddress);
 
 		_Operation->AddressOfSignature = nAddress;
 		_Operation->OutputDebugElapse();

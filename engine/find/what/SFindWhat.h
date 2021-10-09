@@ -6,7 +6,7 @@
 
 class SOptScanning;
 
-typedef QList<quint64> Offsets;
+typedef QList<quint64> SListAddress;
 
 //
 // 找什么类型的数据, 基类
@@ -27,13 +27,13 @@ public:
 
 	virtual bool Lookup(quint64 nAddress, quint8* pBuffer, quint64 nBufferSize, SFindHow* pHow) = 0;
 
-	Offsets& GetOffsets();
+	SListAddress& GetAddresses();
 
 protected:
 	SOptScanning* _Operation;
 	qint32        _Size;
 	bool          _FindFirst;   // true 表示只找一个, 否则找到全部匹配数值.
-	Offsets       _Offsets;
+	SListAddress  _Addresses;
 };
 
 

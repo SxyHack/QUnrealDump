@@ -13,10 +13,10 @@ SFindMethodFast::SFindMethodFast()
 	: SFindMethod()
 	, _Dispatcher(this)
 {
-	auto nCPU = GProcess.GetNumberOfProcessor();
+	auto nCPU = GProcess.GetNumberOfProcessor() - 2;
 	qDebug("使用CPU数量:%d", nCPU);
-	//_ThreadPool.setMaxThreadCount(nCPU - 1);
-	_ThreadPool.setMaxThreadCount(1);
+	_ThreadPool.setMaxThreadCount(nCPU);
+	//_ThreadPool.setMaxThreadCount(1);
 }
 
 SFindMethodFast::~SFindMethodFast()
@@ -92,7 +92,6 @@ void SFindMethodFast::run()
 	}
 
 	qDebug("有效内存页数量：%d", _Workers.count());
-	//_Dispatcher.start(QThread::HighestPriority);
 
 	for (auto pWorker : _Workers) {
 		_ThreadPool.start(pWorker);

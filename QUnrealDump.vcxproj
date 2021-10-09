@@ -139,6 +139,7 @@
     <ClCompile Include="mybase\microsoft\SLastError.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="test.h" />
     <QtMoc Include="engine\find\what\SFindWhat.h" />
     <QtMoc Include="engine\find\what\SFindInteger.h" />
     <QtMoc Include="engine\find\what\SFindDouble.h" />
@@ -180,6 +181,9 @@
   <ItemGroup>
     <Library Include="mybase\microsoft\ntdll\ntdll_x64.lib" />
     <Library Include="mybase\microsoft\ntdll\ntdll_x86.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="test.asm" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

@@ -7,7 +7,7 @@ class SDumpNames : public QThread
 	Q_OBJECT
 
 public:
-	SDumpNames(QObject *parent);
+	SDumpNames();
 	~SDumpNames();
 
 	void run() override;

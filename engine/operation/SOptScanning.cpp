@@ -7,7 +7,7 @@ SOptScanning::SOptScanning(SFindMethod* pMethod, SFindWhat* pWhat, SFindHow* pHo
 	: SOperation(NULL)
 	, _How(pHow)
 	, _Method(pMethod)
-	, Address(0)
+	, AddressOfSignature(0)
 {
 	pWhat->SetRoot(this);
 
@@ -22,7 +22,7 @@ SOptScanning::SOptScanning(SFindMethod* pMethod, SWhatList whats, SFindHow* pHow
 	, _WhatList(whats)
 	, _How(pHow)
 	, _Method(pMethod)
-	, Address(0)
+	, AddressOfSignature(0)
 {
 	for (auto pWhat : _WhatList)
 	{
@@ -56,7 +56,7 @@ bool SOptScanning::IsStopped()
 
 bool SOptScanning::WaitForDone()
 {
-	_Method->wait();
+	return _Method->wait();
 }
 
 SFindHow* SOptScanning::GetHow()
@@ -69,6 +69,19 @@ SWhatList& SOptScanning::GetWhatList()
 	return _WhatList;
 }
 
+
+quint64 SOptScanning::GetFirstAddress()
+{
+	for (auto pWhat : _WhatList)
+	{
+		auto addrs = pWhat->GetAddresses();
+		if (addrs.count() > 0) {
+			return addrs.first();
+		}
+	}
+
+	return 0;
+}
 
 void SOptScanning::OutputDebugElapse()
 {

@@ -26,6 +26,7 @@ public:
 
 	SFindHow* GetHow();
 	SWhatList& GetWhatList();
+	quint64 GetFirstAddress();
 
 	void OutputDebugElapse();
 
