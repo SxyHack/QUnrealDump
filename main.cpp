@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
 	//QVariant D("\x11\x22\x34");
 	//qDebug("Check QVariant Bytes: %s", (C == D) ? "true" : "false");
 
-    if (!GProcess.NtOpen(0x30EC))
+    if (!GProcess.NtOpen(14124))
         return -1;
 
     GProcess.SetupAccessor(false);
