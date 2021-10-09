@@ -185,9 +185,6 @@
     <Library Include="mybase\microsoft\ntdll\ntdll_x86.lib" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="test2.asm" />
-  </ItemGroup>
-  <ItemGroup>
     <MASM Include="test.asm" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -128,11 +128,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="test2.asm">
-      <Filter>Source Files</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <MASM Include="test.asm">
       <Filter>Source Files</Filter>
     </MASM>
